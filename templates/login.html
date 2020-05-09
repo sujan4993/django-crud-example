@@ -1,0 +1,20 @@
+{% extends 'base1.html' %}
+{% block title %} Register {% endblock %}
+{% load bootstrap %}
+{% block main %}
+
+<div class="container">
+    <h1>Login</h1>
+
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            {{form | bootstrap}}
+            <button type="submit" class="btn btn-success">Login</button>
+
+        </form>
+
+    </div>
+    
+</div>
+{% endblock %}
