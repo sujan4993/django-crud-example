@@ -5,7 +5,7 @@ from .forms import LoginForm
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 
@@ -39,3 +39,7 @@ def loginUser(request):
         'form':form
     }
     return render(request,'login.html',context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('/accounts/login')
