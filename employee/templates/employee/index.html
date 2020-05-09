@@ -1,0 +1,80 @@
+{% extends "base1.html" %}
+{% block title %} Employee {% endblock %}
+
+
+{% block main %}
+<div class="container">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+        Add New 
+      </button>
+
+    <div class="card">
+        <div class="card-header">
+            Employee Details
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for person in persons %}
+                  <tr>
+                    <th scope="row">{{person.id}}</th>
+                    <td>{{person.first_name}}</td>
+                    <td>{{person.last_name}}</td>
+                    <td>{{person.email}}</td>
+                    <td>
+                        <a href="/employee/edit/{{person.id}}" class="btn btn-outline-info btn-sm">Update</a>
+                        <a href="/employee/delete/{{person.id}}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Do you want to delete??');" >Delete</a>
+                    </td>
+                  </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+              
+        </div>
+    </div>
+    
+</div>
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Add Employee</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+               <div class="form-group">
+                   <label>First Name</label>
+                   <input type="text" name="first_name" class="form-control" placeholder="Enter First Name">
+               </div>
+               <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="last_name" class="form-control" placeholder="Enter last Name">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter Email">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-success">Save</button>
+              </div>
+            </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+{% endblock %}
