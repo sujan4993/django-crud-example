@@ -18,7 +18,7 @@ from django.urls import path,include
 from enquiries.views import index,about
 from customers.views import register
 # from employee.views import home
-from .views import home
+from .views import home,admin_index
 
 
 
@@ -27,6 +27,7 @@ from .views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home),
+    path('administrator',admin_index),
     path('employee/',include('employee.urls')),
     path('employeer/',include('employeer.urls')),
     path('customer/',index),

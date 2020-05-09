@@ -7,3 +7,6 @@ def home(request):
         'employee':employee
     }
     return render(request,'home.html',context)
+
+def admin_index(request):
+    return render(request,'admin-index.html')
